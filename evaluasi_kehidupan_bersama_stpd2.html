@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluasi Kehidupan Bersama - Seminari Tinggi Providentia Dei</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        seminary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            600: '#1e3a8a', // Deep Royal Navy
+                            700: '#1e293b',
+                            800: '#0f172a',
+                            gold: '#d97706',
+                            goldhover: '#b45309',
+                            growth: '#15803d', // Warm Leaf Green
+                            growthlight: '#f0fdf4',
+                            terracotta: '#c2410c'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans min-h-screen flex flex-col">
+
+    <!-- Header Navigation -->
+    <header class="bg-gradient-to-r from-seminary-800 via-seminary-700 to-indigo-950 text-white shadow-lg sticky top-0 z-40 border-b border-amber-500/20">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+            <!-- Header Title -->
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400 font-bold text-lg">
+                    <i class="fa-solid fa-church"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-base sm:text-lg tracking-tight leading-tight text-amber-100">Seminari Tinggi Providentia Dei</h1>
+                    <p class="text-xs text-emerald-300 font-medium flex items-center gap-1.5">
+                        <span>Keuskupan Surabaya</span>
+                        <span class="inline-block w-1 h-1 rounded-full bg-amber-400"></span>
+                        <span class="text-slate-300">Evaluasi Kehidupan Bersama</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Main Navigation Tabs -->
+            <nav class="flex items-center bg-seminary-800/90 p-1 rounded-xl border border-white/10 shadow-inner text-xs sm:text-sm">
+                <button id="navFormBtn" onclick="switchTab('form')" class="px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-amber-500 text-slate-900 shadow-md">
+                    <i class="fa-solid fa-pen-to-square mr-1.5"></i>Isi Evaluasi
+                </button>
+                <button id="navDashboardBtn" onclick="switchTab('dashboard')" class="px-4 py-2 rounded-lg font-medium transition-all duration-200 text-slate-300 hover:text-white flex items-center gap-1.5">
+                    <i class="fa-solid fa-lock text-amber-400 text-xs" id="lockIcon"></i>
+                    <span>Rekapitulasi</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="flex-grow max-w-5xl w-full mx-auto p-4 sm:p-6 my-2">
+
+        <!-- Form Tab Section -->
+        <section id="tabForm" class="block space-y-6">
+            
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-br from-seminary-800 via-indigo-900 to-emerald-950 rounded-2xl p-6 text-white shadow-lg relative overflow-hidden border-l-8 border-amber-500">
+                <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                    <div class="max-w-3xl space-y-2">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span class="inline-flex items-center px-3 py-1 bg-amber-500/20 text-amber-300 rounded-full text-xs font-semibold tracking-wider uppercase border border-amber-500/30">
+                                <i class="fa-solid fa-seedling mr-1.5 text-emerald-400"></i> Evaluasi Komunitas STPD
+                            </span>
+                            <span class="inline-flex items-center px-2.5 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs font-medium border border-emerald-500/30">
+                                Keuskupan Surabaya
+                            </span>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">Re:Community</h2>
+                        <p class="text-sm text-slate-200 leading-relaxed font-medium tracking-wide">
+                            Our Voice. Our Community. Our Growth.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step Progress Indicator -->
+            <div class="bg-white rounded-xl p-4 shadow-sm border border-slate-200">
+                <div class="flex items-center justify-between max-w-lg mx-auto relative">
+                    <!-- Line connector -->
+                    <div class="absolute top-1/2 left-0 right-0 h-1 bg-slate-200 -translate-y-1/2 z-0"></div>
+                    <div id="progressLine" class="absolute top-1/2 left-0 h-1 bg-amber-500 -translate-y-1/2 z-0 transition-all duration-300 w-0"></div>
+
+                    <!-- Step 1 Badge -->
+                    <div id="step1Badge" class="relative z-10 flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full bg-amber-500 text-slate-900 font-bold flex items-center justify-center shadow-md transition-all duration-200 ring-4 ring-white">
+                            1
+                        </div>
+                        <span class="text-xs font-semibold mt-1 text-slate-700">Identitas & Periode</span>
+                    </div>
+
+                    <!-- Step 2 Badge -->
+                    <div id="step2Badge" class="relative z-10 flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full bg-slate-200 text-slate-600 font-bold flex items-center justify-center shadow transition-all duration-200 ring-4 ring-white">
+                            2
+                        </div>
+                        <span class="text-xs font-medium mt-1 text-slate-500">Isi Evaluasi</span>
+                    </div>
+
+                    <!-- Step 3 Badge -->
+                    <div id="step3Badge" class="relative z-10 flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full bg-slate-200 text-slate-600 font-bold flex items-center justify-center shadow transition-all duration-200 ring-4 ring-white">
+                            3
+                        </div>
+                        <span class="text-xs font-medium mt-1 text-slate-500">Konfirmasi</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Card Wrapper -->
+            <form id="evaluationForm" onsubmit="event.preventDefault();" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 space-y-6">
+                
+                <!-- Step 1 Content: Identity & Role Selection -->
+                <div id="step1Content" class="space-y-6">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-lg font-bold text-slate-800 flex items-center">
+                            <i class="fa-solid fa-user-check text-amber-500 mr-2"></i> Identitas & Periode Evaluasi
+                        </h3>
+                        <p class="text-xs text-slate-500">Silakan lengkapi bulan, tahun, nama, tingkat, dan bidang pelayanan Anda.</p>
+                    </div>
+
+                    <!-- Periode Evaluasi (Bulan & Tahun Input) -->
+                    <div class="bg-amber-50/50 border border-amber-200/80 rounded-xl p-4 space-y-3">
+                        <label class="block text-sm font-bold text-amber-900 flex items-center gap-1.5">
+                            <i class="fa-solid fa-calendar-days text-amber-600"></i> Periode Evaluasi
+                        </label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Bulan Dropdown -->
+                            <div>
+                                <label for="bulanEvaluasi" class="block text-xs font-semibold text-slate-700 mb-1">
+                                    Bulan Evaluasi <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                        <i class="fa-solid fa-calendar"></i>
+                                    </span>
+                                    <select id="bulanEvaluasi" required
+                                        class="w-full pl-10 pr-8 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition text-sm appearance-none font-medium text-slate-700 bg-white">
+                                        <option value="" disabled selected>-- Pilih Bulan --</option>
+                                        <option value="Januari">Januari</option>
+                                        <option value="Februari">Februari</option>
+                                        <option value="Maret">Maret</option>
+                                        <option value="April">April</option>
+                                        <option value="Mei">Mei</option>
+                                        <option value="Juni">Juni</option>
+                                        <option value="Juli">Juli</option>
+                                        <option value="Agustus">Agustus</option>
+                                        <option value="September">September</option>
+                                        <option value="Oktober">Oktober</option>
+                                        <option value="November">November</option>
+                                        <option value="Desember">Desember</option>
+                                    </select>
+                                    <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+                                        <i class="fa-solid fa-chevron-down text-xs"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Tahun Input (Numbers Only Validation) -->
+                            <div>
+                                <label for="tahunEvaluasi" class="block text-xs font-semibold text-slate-700 mb-1">
+                                    Tahun Evaluasi (Hanya Angka) <span class="text-red-500">*</span>
+                                </label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                        <i class="fa-solid fa-clock"></i>
+                                    </span>
+                                    <input type="text" id="tahunEvaluasi" required maxlength="4" placeholder="Contoh: 2026"
+                                        oninput="validateYearInput(this)"
+                                        class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition text-sm bg-white font-medium">
+                                </div>
+                                <span class="text-[11px] text-slate-400 mt-0.5 block">Format 4 digit angka (misal: 2026)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <!-- Nama Lengkap -->
+                        <div>
+                            <label for="namaFrater" class="block text-sm font-semibold text-slate-700 mb-1">
+                                Nama Lengkap Frater <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                    <i class="fa-solid fa-user"></i>
+                                </span>
+                                <input type="text" id="namaFrater" required placeholder="Contoh: Fr. Yohanes Maria Vianney"
+                                    class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition text-sm">
+                            </div>
+                        </div>
+
+                        <!-- Tingkat Frater -->
+                        <div>
+                            <label for="tingkatFrater" class="block text-sm font-semibold text-slate-700 mb-1">
+                                Tingkat <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                </span>
+                                <select id="tingkatFrater" required onchange="onTingkatChange(this.value)"
+                                    class="w-full pl-10 pr-8 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition text-sm appearance-none font-medium text-slate-700 bg-white">
+                                    <option value="" disabled selected>-- Pilih Tingkat (1-6) --</option>
+                                    <option value="Tingkat 1">Tingkat 1</option>
+                                    <option value="Tingkat 2">Tingkat 2</option>
+                                    <option value="Tingkat 3">Tingkat 3</option>
+                                    <option value="Tingkat 4">Tingkat 4</option>
+                                    <option value="Tingkat 5">Tingkat 5</option>
+                                    <option value="Tingkat 6">Tingkat 6</option>
+                                </select>
+                                <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+                                    <i class="fa-solid fa-chevron-down text-xs"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bidang Selection (5 Main Categories) -->
+                    <div class="space-y-3">
+                        <label class="block text-sm font-semibold text-slate-700">
+                            Pilih Bidang Fungsionaris <span class="text-red-500">*</span>
+                        </label>
+                        <p class="text-xs text-slate-500">Pilih salah satu bidang utama di bawah ini untuk melihat pilihan jabatan/divisi spesifik.</p>
+
+                        <!-- Dynamic Notice for Non-Fungsionaris -->
+                        <div id="nonFungsionarisNotice" class="hidden bg-amber-50 border border-amber-300 text-amber-800 p-3 rounded-xl text-xs flex items-center gap-2">
+                            <i class="fa-solid fa-circle-info text-amber-600 shrink-0"></i>
+                            <span>Khusus <strong>Tingkat 4 & Tingkat 6</strong> difokuskan pada penulisan tugas akhir (Skripsi/Tesis) dan bukan fungsionaris, sehingga pilihan dikunci otomatis ke <strong>Non-Bidang</strong>.</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+                            <!-- Bidang Kerohanian -->
+                            <label class="bidang-card cursor-pointer border border-slate-200 bg-white rounded-xl p-4 flex items-center space-x-3.5 hover:border-amber-400 hover:bg-amber-50/30 transition shadow-sm relative group">
+                                <div class="w-10 h-10 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 font-bold group-hover:scale-105 transition">
+                                    <i class="fa-solid fa-cross text-lg"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm font-bold text-slate-800 block">1. Kerohanian</span>
+                                        <input type="radio" name="bidangRadio" value="Kerohanian" onchange="onBidangChange('Kerohanian')" class="text-amber-500 focus:ring-amber-400 h-4 w-4">
+                                    </div>
+                                    <span class="text-xs text-slate-500 block mt-0.5">Liturgi, Koster, Musik, Dekorasi</span>
+                                </div>
+                            </label>
+
+                            <!-- Bidang Komunitas -->
+                            <label class="bidang-card cursor-pointer border border-slate-200 bg-white rounded-xl p-4 flex items-center space-x-3.5 hover:border-amber-400 hover:bg-amber-50/30 transition shadow-sm relative group">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 font-bold group-hover:scale-105 transition">
+                                    <i class="fa-solid fa-people-group text-lg"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm font-bold text-slate-800 block">2. Komunitas</span>
+                                        <input type="radio" name="bidangRadio" value="Komunitas" onchange="onBidangChange('Komunitas')" class="text-amber-500 focus:ring-amber-400 h-4 w-4">
+                                    </div>
+                                    <span class="text-xs text-slate-500 block mt-0.5">Refter, Olahraga, Kesehatan, dll.</span>
+                                </div>
+                            </label>
+
+                            <!-- Bidang Intelektual -->
+                            <label class="bidang-card cursor-pointer border border-slate-200 bg-white rounded-xl p-4 flex items-center space-x-3.5 hover:border-amber-400 hover:bg-amber-50/30 transition shadow-sm relative group">
+                                <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 font-bold group-hover:scale-105 transition">
+                                    <i class="fa-solid fa-book-open text-lg"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm font-bold text-slate-800 block">3. Intelektual</span>
+                                        <input type="radio" name="bidangRadio" value="Intelektual" onchange="onBidangChange('Intelektual')" class="text-amber-500 focus:ring-amber-400 h-4 w-4">
+                                    </div>
+                                    <span class="text-xs text-slate-500 block mt-0.5">Perpustakaan, Komputer, Seni</span>
+                                </div>
+                            </label>
+
+                            <!-- Bidang Pastoral -->
+                            <label class="bidang-card cursor-pointer border border-slate-200 bg-white rounded-xl p-4 flex items-center space-x-3.5 hover:border-amber-400 hover:bg-amber-50/30 transition shadow-sm relative group">
+                                <div class="w-10 h-10 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center shrink-0 font-bold group-hover:scale-105 transition">
+                                    <i class="fa-solid fa-hands-holding-child text-lg"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm font-bold text-slate-800 block">4. Pastoral</span>
+                                        <input type="radio" name="bidangRadio" value="Pastoral" onchange="onBidangChange('Pastoral')" class="text-amber-500 focus:ring-amber-400 h-4 w-4">
+                                    </div>
+                                    <span class="text-xs text-slate-500 block mt-0.5">Divisi Pastoral, Tamu & Humas</span>
+                                </div>
+                            </label>
+
+                            <!-- Non-Bidang -->
+                            <label class="bidang-card cursor-pointer border border-slate-200 bg-white rounded-xl p-4 flex items-center space-x-3.5 hover:border-amber-400 hover:bg-amber-50/30 transition shadow-sm relative group sm:col-span-2 lg:col-span-1">
+                                <div class="w-10 h-10 rounded-lg bg-rose-100 text-rose-700 flex items-center justify-center shrink-0 font-bold group-hover:scale-105 transition">
+                                    <i class="fa-solid fa-user-graduate text-lg"></i>
+                                </div>
+                                <div class="flex-grow">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm font-bold text-slate-800 block">5. Non-Bidang</span>
+                                        <input type="radio" name="bidangRadio" value="Non-Bidang" onchange="onBidangChange('Non-Bidang')" class="text-amber-500 focus:ring-amber-400 h-4 w-4">
+                                    </div>
+                                    <span class="text-xs text-slate-500 block mt-0.5">KU-WKU, Skripsi, Tesis</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Sub-Jabatan Dropdown -->
+                    <div id="subJabatanContainer" class="hidden transition-all duration-300">
+                        <label for="jabatanFrater" class="block text-sm font-semibold text-slate-700 mb-1">
+                            Jabatan / Divisi Spesifik <span class="text-red-500">*</span>
+                        </label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                <i class="fa-solid fa-sitemap"></i>
+                            </span>
+                            <select id="jabatanFrater" required
+                                class="w-full pl-10 pr-8 py-2.5 rounded-xl border border-amber-300 bg-amber-50/40 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition text-sm appearance-none font-medium text-slate-800">
+                                <!-- Dynamic Options will be populated here -->
+                            </select>
+                            <span class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Next Step 1 -->
+                    <div class="flex justify-end pt-4">
+                        <button type="button" onclick="goToStep(2)" class="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold rounded-xl shadow transition flex items-center space-x-2">
+                            <span>Lanjut ke Evaluasi</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2 Content: Evaluation Fields -->
+                <div id="step2Content" class="hidden space-y-6">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-lg font-bold text-slate-800 flex items-center">
+                            <i class="fa-solid fa-clipboard-check text-amber-500 mr-2"></i> Inti Evaluasi Kehidupan Bersama
+                        </h3>
+                        <p class="text-xs text-slate-500">Tuliskan penilaian Anda secara padat, konstruktif, dan obyektif (Maksimal 1000 karakter untuk setiap poin).</p>
+                    </div>
+
+                    <!-- Dynamic Group A: Tingkat 1, 2, 3, 5 (Standard Fungsionaris Fields 1-4) -->
+                    <div id="groupStandardEval" class="space-y-6">
+                        <!-- Area 1: Evaluasi Kinerja -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between items-center">
+                                <label for="evalKinerja" class="block text-sm font-semibold text-slate-700">
+                                    1. Evaluasi Kinerja <span class="text-red-500">*</span>
+                                </label>
+                                <span id="counterKinerja" class="text-xs font-mono text-slate-500">0 / 1000</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Penilaian ketercapaian program kerja, kedisiplinan, dan pelaksanaan tugas fungsionaris.</p>
+                            <textarea id="evalKinerja" maxlength="1000" rows="4"
+                                oninput="updateCharCount('evalKinerja', 'counterKinerja')"
+                                placeholder="Tuliskan evaluasi kinerja..."
+                                class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition text-sm resize-none"></textarea>
+                        </div>
+
+                        <!-- Area 2: Kendala dan Tantangan -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between items-center">
+                                <label for="evalKendala" class="block text-sm font-semibold text-slate-700">
+                                    2. Kendala dan Tantangan <span class="text-red-500">*</span>
+                                </label>
+                                <span id="counterKendala" class="text-xs font-mono text-slate-500">0 / 1000</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Hambatan internal maupun eksternal yang dihadapi dalam hidup komunitas atau bidang.</p>
+                            <textarea id="evalKendala" maxlength="1000" rows="4"
+                                oninput="updateCharCount('evalKendala', 'counterKendala')"
+                                placeholder="Tuliskan kendala & tantangan..."
+                                class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition text-sm resize-none"></textarea>
+                        </div>
+
+                        <!-- Area 3: Saran dan Masukan (Standard) -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between items-center">
+                                <label for="evalSaran" class="block text-sm font-semibold text-slate-700">
+                                    3. Saran dan Masukan <span class="text-red-500">*</span>
+                                </label>
+                                <span id="counterSaran" class="text-xs font-mono text-slate-500">0 / 1000</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Rekomendasi konkrit untuk perbaikan kehidupan bersama ke depan.</p>
+                            <textarea id="evalSaran" maxlength="1000" rows="4"
+                                oninput="updateCharCount('evalSaran', 'counterSaran')"
+                                placeholder="Tuliskan saran & masukan..."
+                                class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition text-sm resize-none"></textarea>
+                        </div>
+
+                        <!-- Area 4: Evaluasi Umum (Standard) -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between items-center">
+                                <label for="evalUmum" class="block text-sm font-semibold text-slate-700">
+                                    4. Evaluasi Umum
+                                </label>
+                                <span id="counterUmum" class="text-xs font-mono text-slate-500">0 / 1000</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Dapat diajukan kepada seluruh anggota komunitas, termasuk romo dan karyawan.</p>
+                            <textarea id="evalUmum" maxlength="1000" rows="4"
+                                oninput="updateCharCount('evalUmum', 'counterUmum')"
+                                placeholder="Tuliskan evaluasi umum (bebas)..."
+                                class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition text-sm resize-none"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Group B: Tingkat 4 & 6 (Order: 1. Saran & Masukan, 2. Evaluasi Umum, 3. Refleksi) -->
+                    <div id="groupAcademicEval" class="space-y-6 hidden">
+                        <div class="bg-amber-50/70 border border-amber-200 rounded-xl p-4 text-xs text-amber-900 flex items-start gap-2.5">
+                            <i class="fa-solid fa-graduation-cap text-amber-600 text-base mt-0.5"></i>
+                            <div>
+                                <strong class="font-bold block mb-0.5">Format Khusus Tingkat Akhir (Tingkat 4 & 6)</strong>
+                                <span>Lengkapi Saran dan Masukan, Evaluasi Umum, serta Refleksi Anda secara pribadi.</span>
+                            </div>
+                        </div>
+
+                        <!-- Area 1: Saran dan Masukan (Academic) -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between items-center">
+                                <label for="evalSaranAcad" class="block text-sm font-semibold text-slate-700">
+                                    1. Saran dan Masukan <span class="text-red-500">*</span>
+                                </label>
+                                <span id="counterSaranAcad" class="text-xs font-mono text-slate-500">0 / 1000</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Rekomendasi konkrit untuk perbaikan kehidupan bersama ke depan.</p>
+                            <textarea id="evalSaranAcad" maxlength="1000" rows="4"
+                                oninput="updateCharCount('evalSaranAcad', 'counterSaranAcad')"
+                                placeholder="Tuliskan saran & masukan..."
+                                class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition text-sm resize-none"></textarea>
+                        </div>
+
+                        <!-- Area 2: Evaluasi Umum (Academic) -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between items-center">
+                                <label for="evalUmumAcad" class="block text-sm font-semibold text-slate-700">
+                                    2. Evaluasi Umum
+                                </label>
+                                <span id="counterUmumAcad" class="text-xs font-mono text-slate-500">0 / 1000</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Dapat diajukan kepada seluruh anggota komunitas, termasuk romo dan karyawan.</p>
+                            <textarea id="evalUmumAcad" maxlength="1000" rows="4"
+                                oninput="updateCharCount('evalUmumAcad', 'counterUmumAcad')"
+                                placeholder="Tuliskan evaluasi umum (bebas)..."
+                                class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition text-sm resize-none"></textarea>
+                        </div>
+
+                        <!-- Area 3: Refleksi (Academic) -->
+                        <div class="space-y-1">
+                            <div class="flex justify-between items-center">
+                                <label for="evalRefleksi" class="block text-sm font-semibold text-slate-700">
+                                    3. Refleksi <span class="text-red-500">*</span>
+                                </label>
+                                <span id="counterRefleksi" class="text-xs font-mono text-slate-500">0 / 1000</span>
+                            </div>
+                            <p class="text-xs text-slate-500">Refleksi pribadi Anda.</p>
+                            <textarea id="evalRefleksi" maxlength="1000" rows="5"
+                                oninput="updateCharCount('evalRefleksi', 'counterRefleksi')"
+                                placeholder="Tuliskan refleksi..."
+                                class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition text-sm resize-none"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Next/Prev Step 2 -->
+                    <div class="flex justify-between pt-4">
+                        <button type="button" onclick="goToStep(1)" class="px-5 py-2.5 border border-slate-300 hover:bg-slate-100 text-slate-700 font-medium rounded-xl transition flex items-center space-x-2">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            <span>Kembali</span>
+                        </button>
+                        <button type="button" onclick="goToStep(3)" class="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-900 font-semibold rounded-xl shadow transition flex items-center space-x-2">
+                            <span>Tinjau Ringkasan</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3 Content: Confirmation & Preview -->
+                <div id="step3Content" class="hidden space-y-6">
+                    <div class="border-b border-slate-200 pb-3">
+                        <h3 class="text-lg font-bold text-slate-800 flex items-center">
+                            <i class="fa-solid fa-circle-check text-green-600 mr-2"></i> Pratinjau & Konfirmasi Data
+                        </h3>
+                        <p class="text-xs text-slate-500">Pastikan seluruh data yang Anda masukkan telah benar sebelum dikirimkan.</p>
+                    </div>
+
+                    <!-- Summary Card Preview -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 border-b border-slate-200 pb-4">
+                            <div>
+                                <span class="text-xs text-slate-400 font-medium block">PERIODE</span>
+                                <span id="prevPeriode" class="font-bold text-amber-700">-</span>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 font-medium block">NAMA</span>
+                                <span id="prevNama" class="font-bold text-slate-800">-</span>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 font-medium block">TINGKAT</span>
+                                <span id="prevTingkat" class="font-bold text-slate-800">-</span>
+                            </div>
+                            <div>
+                                <span class="text-xs text-slate-400 font-medium block">BIDANG & JABATAN</span>
+                                <span id="prevJabatan" class="font-bold text-slate-800">-</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3" id="prevFieldsContainer">
+                            <!-- Populated dynamically via JS based on level group -->
+                        </div>
+                    </div>
+
+                    <!-- Bible Verse Banner -->
+                    <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-l-4 border-amber-500 rounded-r-xl p-4 shadow-sm flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-amber-500/20 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
+                            <i class="fa-solid fa-quote-left text-sm"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-xs sm:text-sm text-slate-700 italic leading-relaxed font-medium">
+                                "Karena itu nasihatilah seorang akan yang lain dan saling membangunlah kamu, seperti yang memang kamu lakukan."
+                            </p>
+                            <span class="text-xs font-bold text-amber-800 block text-right">— 1 Tesalonika 5:11</span>
+                        </div>
+                    </div>
+
+                    <!-- Submit Buttons -->
+                    <div class="flex justify-between pt-2">
+                        <button type="button" onclick="goToStep(2)" class="px-5 py-2.5 border border-slate-300 hover:bg-slate-100 text-slate-700 font-medium rounded-xl transition flex items-center space-x-2">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            <span>Ubah Evaluasi</span>
+                        </button>
+                        <button type="button" onclick="openSubmitConfirmModal()" class="px-7 py-2.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition transform active:scale-95 flex items-center space-x-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Kirim Evaluasi</span>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </section>
+
+        <!-- Dashboard Tab Section -->
+        <section id="tabDashboard" class="hidden space-y-6">
+            
+            <!-- Dashboard Stats Summary Header -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-500 font-medium block">Total Evaluasi</span>
+                        <span id="statTotal" class="text-2xl font-bold text-slate-800">0</span>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-500 font-medium block">Bidang Terbanyak</span>
+                        <span id="statTopBidang" class="text-sm font-bold text-slate-800">-</span>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-500 font-medium block">Tingkat Teraktif</span>
+                        <span id="statTopTingkat" class="text-sm font-bold text-slate-800">-</span>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl bg-green-100 text-green-600 flex items-center justify-center text-xl font-bold">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs text-slate-500 font-medium block">Update Terakhir</span>
+                        <span id="statLastUpdate" class="text-xs font-bold text-slate-800">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toolbar Search & Filter -->
+            <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="relative w-full md:w-72">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" id="searchInput" oninput="renderDashboard()" placeholder="Cari Frater, Jabatan..."
+                        class="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-amber-500 outline-none">
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2.5 w-full md:w-auto justify-end">
+                    <!-- Filter Bulan -->
+                    <select id="filterBulan" onchange="renderDashboard()" class="py-2 px-3 border border-slate-200 rounded-xl text-xs sm:text-sm font-medium bg-white text-slate-700 outline-none">
+                        <option value="ALL">Semua Bulan</option>
+                        <option value="Januari">Januari</option>
+                        <option value="Februari">Februari</option>
+                        <option value="Maret">Maret</option>
+                        <option value="April">April</option>
+                        <option value="Mei">Mei</option>
+                        <option value="Juni">Juni</option>
+                        <option value="Juli">Juli</option>
+                        <option value="Agustus">Agustus</option>
+                        <option value="September">September</option>
+                        <option value="Oktober">Oktober</option>
+                        <option value="November">November</option>
+                        <option value="Desember">Desember</option>
+                    </select>
+
+                    <!-- Filter Bidang -->
+                    <select id="filterBidang" onchange="renderDashboard()" class="py-2 px-3 border border-slate-200 rounded-xl text-xs sm:text-sm font-medium bg-white text-slate-700 outline-none">
+                        <option value="ALL">Semua Bidang</option>
+                        <option value="Kerohanian">Kerohanian</option>
+                        <option value="Komunitas">Komunitas</option>
+                        <option value="Intelektual">Intelektual</option>
+                        <option value="Pastoral">Pastoral</option>
+                        <option value="Non-Bidang">Non-Bidang</option>
+                    </select>
+
+                    <!-- Filter Tingkat -->
+                    <select id="filterTingkat" onchange="renderDashboard()" class="py-2 px-3 border border-slate-200 rounded-xl text-xs sm:text-sm font-medium bg-white text-slate-700 outline-none">
+                        <option value="ALL">Semua Tingkat</option>
+                        <option value="Tingkat 1">Tingkat 1</option>
+                        <option value="Tingkat 2">Tingkat 2</option>
+                        <option value="Tingkat 3">Tingkat 3</option>
+                        <option value="Tingkat 4">Tingkat 4</option>
+                        <option value="Tingkat 5">Tingkat 5</option>
+                        <option value="Tingkat 6">Tingkat 6</option>
+                    </select>
+
+                    <!-- Export CSV Button -->
+                    <button onclick="exportToCSV()" class="px-3 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs sm:text-sm font-semibold transition flex items-center space-x-1.5">
+                        <i class="fa-solid fa-file-csv text-amber-400"></i>
+                        <span>Ekspor CSV</span>
+                    </button>
+
+                    <!-- Delete All Button -->
+                    <button onclick="confirmDeleteAllRecords()" title="Hapus Semua Data Evaluasi" class="px-3 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-xl text-xs sm:text-sm font-semibold transition flex items-center space-x-1.5">
+                        <i class="fa-solid fa-trash-arrow-up text-white"></i>
+                        <span>Hapus Semua</span>
+                    </button>
+
+                    <!-- Lock Rekap Button -->
+                    <button onclick="lockDashboard()" title="Kunci Kembali Rekapitulasi" class="px-3 py-2 bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 rounded-xl text-xs sm:text-sm font-medium transition flex items-center space-x-1">
+                        <i class="fa-solid fa-lock text-rose-600"></i>
+                        <span>Kunci</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- List Evaluasi Cards -->
+            <div id="evaluationList" class="space-y-4">
+                <!-- Evaluation items will be rendered dynamically -->
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Confirmation Before Final Submission Modal with Amsal 27:6 Verse -->
+    <div id="submitConfirmModalOverlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-5 text-center transform transition-all scale-95 opacity-0 duration-200" id="submitConfirmModalBox">
+            <div class="w-16 h-16 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mx-auto border border-amber-200 shadow-sm">
+                <i class="fa-solid fa-paper-plane"></i>
+            </div>
+            
+            <div class="space-y-1.5">
+                <h3 class="text-xl font-bold text-slate-800">Konfirmasi Pengiriman Evaluasi</h3>
+                <p class="text-sm text-slate-600">Apakah Frater sudah yakin seluruh isian evaluasi ini benar dan siap untuk dikirimkan?</p>
+            </div>
+
+            <!-- Amsal 27:6 Bible Verse Callout -->
+            <div class="bg-amber-50/80 border-l-4 border-amber-500 rounded-r-xl p-4 text-left space-y-1.5 shadow-inner">
+                <p class="text-xs text-slate-700 italic leading-relaxed font-medium">
+                    "Seorang kawan memukul dengan maksud baik, tetapi seorang lawan mencium secara berlimpah-limpah."
+                </p>
+                <span class="text-xs font-bold text-amber-800 block text-right">— Amsal 27:6</span>
+            </div>
+
+            <div class="flex items-center gap-3 pt-1">
+                <button type="button" onclick="closeSubmitConfirmModal()" class="w-1/2 py-2.5 border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold rounded-xl transition text-sm flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Cek Kembali</span>
+                </button>
+                <button type="button" onclick="executeFormSubmit()" class="w-1/2 py-2.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl shadow-md hover:shadow-lg transition text-sm flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Ya, Kirim Sekarang</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Modal Dialog (Generic Alerts) -->
+    <div id="modalOverlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4 text-center transform transition-all scale-95 opacity-0 duration-200" id="modalBox">
+            <div id="modalIcon" class="w-16 h-16 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-2xl mx-auto">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 id="modalTitle" class="text-xl font-bold text-slate-800">Berhasil!</h3>
+            <p id="modalMessage" class="text-sm text-slate-600">Evaluasi Anda telah berhasil disimpan ke sistem.</p>
+            <button onclick="closeModal()" class="w-full py-2.5 bg-seminary-700 hover:bg-seminary-800 text-white font-semibold rounded-xl transition">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- Password Lock Modal for Rekapitulasi Protection -->
+    <div id="passwordModalOverlay" class="fixed inset-0 bg-slate-950/70 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-5 border border-slate-200 transform transition-all scale-95 opacity-0 duration-200" id="passwordModalBox">
+            <div class="text-center space-y-2">
+                <div class="w-14 h-14 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mx-auto border border-amber-200">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="text-xl font-bold text-slate-800">Proteksi Rekapitulasi</h3>
+                <p class="text-xs text-slate-500">
+                    Halaman ini berisi rekapitulasi data evaluasi internal. Silakan masukkan kata sandi untuk melanjutkan.
+                </p>
+            </div>
+
+            <form onsubmit="handlePasswordSubmit(event)" class="space-y-4">
+                <div>
+                    <label for="inputPassword" class="block text-xs font-bold text-slate-700 mb-1">
+                        Kata Sandi Akses <span class="text-red-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-key"></i>
+                        </span>
+                        <input type="password" id="inputPassword" required placeholder="Masukkan kata sandi..."
+                            class="w-full pl-10 pr-10 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition text-sm">
+                        <button type="button" onclick="togglePasswordVisibility()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600">
+                            <i class="fa-solid fa-eye" id="passEyeIcon"></i>
+                        </button>
+                    </div>
+                    <p id="passwordErrorMsg" class="text-xs font-semibold text-rose-600 mt-1.5 hidden flex items-center gap-1">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        <span>Kata sandi salah! Silakan coba lagi.</span>
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-3 pt-2">
+                    <button type="button" onclick="cancelPasswordPrompt()" class="w-1/2 py-2.5 border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold rounded-xl transition text-sm">
+                        Batal
+                    </button>
+                    <button type="submit" class="w-1/2 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold rounded-xl shadow transition text-sm flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-lock-open"></i>
+                        <span>Buka Rekap</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Confirm Delete Modal Dialog -->
+    <div id="deleteModalOverlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4 text-center transform transition-all scale-95 opacity-0 duration-200" id="deleteModalBox">
+            <div class="w-16 h-16 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-2xl mx-auto border border-rose-200">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">Hapus Rekapitulasi Evaluasi?</h3>
+            <p class="text-sm text-slate-600">
+                Apakah Anda yakin ingin menghapus catatan evaluasi milik <span id="deleteTargetName" class="font-bold text-slate-800"></span>? Data yang dihapus tidak dapat dikembalikan.
+            </p>
+            <div class="flex items-center gap-3 pt-2">
+                <button onclick="closeDeleteModal()" class="w-1/2 py-2.5 border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold rounded-xl transition text-sm">
+                    Batal
+                </button>
+                <button onclick="executeDeleteRecord()" class="w-1/2 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow transition text-sm flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-trash"></i>
+                    <span>Ya, Hapus</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirm Delete ALL Modal Dialog -->
+    <div id="deleteAllModalOverlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-4 text-center transform transition-all scale-95 opacity-0 duration-200" id="deleteAllModalBox">
+            <div class="w-16 h-16 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-2xl mx-auto border border-rose-200">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800">Hapus SELURUH Evaluasi?</h3>
+            <p class="text-sm text-slate-600">
+                Apakah Anda yakin ingin menghapus <span class="font-bold text-rose-600">SEMUA data rekapitulasi evaluasi</span>? Tindakan ini tidak dapat dibatalkan.
+            </p>
+            <div class="flex items-center gap-3 pt-2">
+                <button onclick="closeDeleteAllModal()" class="w-1/2 py-2.5 border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold rounded-xl transition text-sm">
+                    Batal
+                </button>
+                <button onclick="executeDeleteAllRecords()" class="w-1/2 py-2.5 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow transition text-sm flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-dumpster-fire"></i>
+                    <span>Ya, Hapus Semua</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Application Logic -->
+    <script>
+        // Data Structure mapping 5 Bidang to their specific divisions/roles
+        const fungsionarisData = {
+            "Kerohanian": [
+                "Korbid Kerohanian",
+                "Divisi Liturgi",
+                "Koordinator Koster",
+                "Seksi Musik Liturgi",
+                "Seksi Dekorasi dan Taman"
+            ],
+            "Komunitas": [
+                "Korbid Komunitas",
+                "Divisi Refter",
+                "Divisi Rekreasi",
+                "Divisi Transportasi",
+                "Divisi Olahraga",
+                "Divisi Kesehatan",
+                "Seksi Lift, Listrik, dan Air",
+                "Divisi Kerja dan Bank Sampah"
+            ],
+            "Intelektual": [
+                "Korbid Intelektual",
+                "Divisi Perpustakaan",
+                "Divisi Studi Kreatif dan Seni",
+                "Divisi Komputer"
+            ],
+            "Pastoral": [
+                "Korbid Pastoral",
+                "Divisi Pastoral",
+                "Divisi Tamu dan Humas"
+            ],
+            "Non-Bidang": [
+                "KU-WKU",
+                "Tingkat 4 (Skripsi)",
+                "Tingkat 6 (Tesis)"
+            ]
+        };
+
+        // State Storage Management
+        let currentStep = 1;
+        let selectedBidang = "";
+        let evalRecords = [];
+        let isDashboardUnlocked = false; // Password lock state
+        let recordToDeleteId = null; // Target ID for deletion
+
+        // Password requirement
+        const REKAP_PASSWORD = "pakuwoncity";
+
+        // Sample initial mock data for immediate preview
+        const mockInitialData = [
+            {
+                id: 'STPD-1',
+                bulan: 'Agustus',
+                tahun: '2026',
+                nama: 'Fr. Ignatius Yoga',
+                tingkat: 'Tingkat 3',
+                bidang: 'Kerohanian',
+                jabatan: 'Divisi Liturgi',
+                isAcademic: false,
+                kinerja: 'Pelaksanaan tugas ibadat harian dan tugas misa komunitas berjalan baik. Jadwal petugas telah tersusun secara rutin.',
+                kendala: 'Kerap ada keterlambatan penyerahan teks bacaan dan lagu dari tim penanggungjawab harian.',
+                saran: 'Dibuat grup khusus koordinator per hari agar koordinasi liturgi lebih efisien dan terencana.',
+                umum: 'Komunikasi antar angkatan dan staf pendamping/romo secara umum terjalin hangat dan harmonis.',
+                timestamp: '2026-08-28 19:30'
+            },
+            {
+                id: 'STPD-2',
+                bulan: 'Agustus',
+                tahun: '2026',
+                nama: 'Fr. Fransiskus Xaverius',
+                tingkat: 'Tingkat 4',
+                bidang: 'Non-Bidang',
+                jabatan: 'Tingkat 4 (Skripsi)',
+                isAcademic: true,
+                refleksi: 'Menjalani semester ini memberikan banyak kesempatan untuk melatih ketekunan doa dan kedisiplinan.',
+                saran: 'Mohon penegasan aturan kerapihan dan ketenangan di area lantai belajar perpustakaan.',
+                umum: 'Suasana kerja bakti mingguan bersama seluruh romo dan karyawan terasa akrab.',
+                timestamp: '2026-08-29 14:20'
+            }
+        ];
+
+        window.onload = function() {
+            // Load saved data or populate initial mock data
+            const savedData = localStorage.getItem('stpd_evaluations');
+            if (savedData) {
+                try {
+                    evalRecords = JSON.parse(savedData);
+                } catch (e) {
+                    evalRecords = mockInitialData;
+                }
+            } else {
+                evalRecords = mockInitialData;
+                localStorage.setItem('stpd_evaluations', JSON.stringify(evalRecords));
+            }
+
+            // Default year to current year
+            const currentYear = new Date().getFullYear().toString();
+            const tahunInput = document.getElementById('tahunEvaluasi');
+            if (tahunInput && !tahunInput.value) {
+                tahunInput.value = currentYear;
+            }
+
+            // Default month to current month in Indonesian
+            const bulanNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            const currentMonth = bulanNames[new Date().getMonth()];
+            const bulanSelect = document.getElementById('bulanEvaluasi');
+            if (bulanSelect && !bulanSelect.value) {
+                bulanSelect.value = currentMonth;
+            }
+        };
+
+        // Numeric Validation for Year Field (Guarantees only numbers are typed)
+        function validateYearInput(input) {
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+
+        function switchTab(tab) {
+            const tabForm = document.getElementById('tabForm');
+            const tabDashboard = document.getElementById('tabDashboard');
+            const navFormBtn = document.getElementById('navFormBtn');
+            const navDashboardBtn = document.getElementById('navDashboardBtn');
+
+            if (tab === 'form') {
+                tabForm.classList.remove('hidden');
+                tabDashboard.classList.add('hidden');
+                
+                navFormBtn.className = "px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-amber-500 text-slate-900 shadow-md";
+                navDashboardBtn.className = "px-4 py-2 rounded-lg font-medium transition-all duration-200 text-slate-300 hover:text-white flex items-center gap-1.5";
+            } else {
+                if (!isDashboardUnlocked) {
+                    openPasswordModal();
+                    return;
+                }
+
+                tabForm.classList.add('hidden');
+                tabDashboard.classList.remove('hidden');
+                
+                navDashboardBtn.className = "px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-amber-500 text-slate-900 shadow-md flex items-center gap-1.5";
+                navFormBtn.className = "px-4 py-2 rounded-lg font-medium transition-all duration-200 text-slate-300 hover:text-white";
+                renderDashboard();
+            }
+        }
+
+        function openPasswordModal() {
+            const overlay = document.getElementById('passwordModalOverlay');
+            const box = document.getElementById('passwordModalBox');
+            const input = document.getElementById('inputPassword');
+            const errorMsg = document.getElementById('passwordErrorMsg');
+
+            input.value = '';
+            errorMsg.classList.add('hidden');
+            overlay.classList.remove('hidden');
+
+            setTimeout(() => {
+                box.classList.remove('scale-95', 'opacity-0');
+                box.classList.add('scale-100', 'opacity-100');
+                input.focus();
+            }, 10);
+        }
+
+        function cancelPasswordPrompt() {
+            const overlay = document.getElementById('passwordModalOverlay');
+            const box = document.getElementById('passwordModalBox');
+
+            box.classList.remove('scale-100', 'opacity-100');
+            box.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 150);
+        }
+
+        function handlePasswordSubmit(event) {
+            event.preventDefault();
+            const inputPass = document.getElementById('inputPassword').value.trim();
+            const errorMsg = document.getElementById('passwordErrorMsg');
+
+            if (inputPass === REKAP_PASSWORD) {
+                isDashboardUnlocked = true;
+                
+                const lockIcon = document.getElementById('lockIcon');
+                if (lockIcon) {
+                    lockIcon.className = "fa-solid fa-lock-open text-green-400 text-xs";
+                }
+
+                cancelPasswordPrompt();
+
+                const tabForm = document.getElementById('tabForm');
+                const tabDashboard = document.getElementById('tabDashboard');
+                const navFormBtn = document.getElementById('navFormBtn');
+                const navDashboardBtn = document.getElementById('navDashboardBtn');
+
+                tabForm.classList.add('hidden');
+                tabDashboard.classList.remove('hidden');
+                navDashboardBtn.className = "px-4 py-2 rounded-lg font-medium transition-all duration-200 bg-amber-500 text-slate-900 shadow-md flex items-center gap-1.5";
+                navFormBtn.className = "px-4 py-2 rounded-lg font-medium transition-all duration-200 text-slate-300 hover:text-white";
+                
+                renderDashboard();
+            } else {
+                errorMsg.classList.remove('hidden');
+                document.getElementById('inputPassword').value = '';
+                document.getElementById('inputPassword').focus();
+            }
+        }
+
+        function lockDashboard() {
+            isDashboardUnlocked = false;
+            const lockIcon = document.getElementById('lockIcon');
+            if (lockIcon) {
+                lockIcon.className = "fa-solid fa-lock text-amber-400 text-xs";
+            }
+            switchTab('form');
+            showCustomModal("Dashboard Dikunci", "Akses Rekapitulasi telah dikunci kembali.", "warning");
+        }
+
+        function togglePasswordVisibility() {
+            const passInput = document.getElementById('inputPassword');
+            const eyeIcon = document.getElementById('passEyeIcon');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                eyeIcon.className = "fa-solid fa-eye-slash";
+            } else {
+                passInput.type = 'password';
+                eyeIcon.className = "fa-solid fa-eye";
+            }
+        }
+
+        function onTingkatChange(tingkat) {
+            const isNonFungsionaris = (tingkat === 'Tingkat 4' || tingkat === 'Tingkat 6');
+            const isJuniorLevel = (tingkat === 'Tingkat 1' || tingkat === 'Tingkat 2');
+            const notice = document.getElementById('nonFungsionarisNotice');
+            
+            const groupStandard = document.getElementById('groupStandardEval');
+            const groupAcademic = document.getElementById('groupAcademicEval');
+
+            if (isNonFungsionaris) {
+                groupStandard.classList.add('hidden');
+                groupAcademic.classList.remove('hidden');
+            } else {
+                groupStandard.classList.remove('hidden');
+                groupAcademic.classList.add('hidden');
+            }
+
+            if (notice) {
+                if (isNonFungsionaris) {
+                    notice.classList.remove('hidden');
+                } else {
+                    notice.classList.add('hidden');
+                }
+            }
+
+            document.querySelectorAll('.bidang-card').forEach(card => {
+                const radio = card.querySelector('input[type="radio"]');
+                if (!radio) return;
+
+                if (isNonFungsionaris) {
+                    if (radio.value === 'Non-Bidang') {
+                        radio.disabled = false;
+                        radio.checked = true;
+                        card.classList.remove('opacity-50', 'pointer-events-none', 'cursor-not-allowed');
+                    } else {
+                        radio.disabled = true;
+                        radio.checked = false;
+                        card.classList.add('opacity-50', 'pointer-events-none', 'cursor-not-allowed');
+                    }
+                } else {
+                    if (radio.value === 'Non-Bidang' && isJuniorLevel) {
+                        // Tingkat 1 & 2 cannot choose Non-Bidang (no KU-WKU, Skripsi, or Tesis available)
+                        radio.disabled = true;
+                        radio.checked = false;
+                        card.classList.add('opacity-50', 'pointer-events-none', 'cursor-not-allowed');
+                        if (selectedBidang === 'Non-Bidang') {
+                            selectedBidang = "";
+                            document.getElementById('subJabatanContainer').classList.add('hidden');
+                        }
+                    } else {
+                        radio.disabled = false;
+                        card.classList.remove('opacity-50', 'pointer-events-none', 'cursor-not-allowed');
+                    }
+                }
+            });
+
+            if (isNonFungsionaris) {
+                onBidangChange('Non-Bidang');
+                
+                const selectJabatan = document.getElementById('jabatanFrater');
+                if (selectJabatan) {
+                    if (tingkat === 'Tingkat 4') {
+                        selectJabatan.value = 'Tingkat 4 (Skripsi)';
+                    } else if (tingkat === 'Tingkat 6') {
+                        selectJabatan.value = 'Tingkat 6 (Tesis)';
+                    }
+                }
+            } else if (selectedBidang) {
+                // Refresh sub-jabatan dropdown so restricted options stay filtered out
+                onBidangChange(selectedBidang);
+            }
+        }
+
+        function onBidangChange(bidangName) {
+            selectedBidang = bidangName;
+            const container = document.getElementById('subJabatanContainer');
+            const selectJabatan = document.getElementById('jabatanFrater');
+            const tingkatVal = document.getElementById('tingkatFrater').value;
+
+            // Highlight selected Bidang Card
+            document.querySelectorAll('.bidang-card').forEach(card => {
+                const radio = card.querySelector('input[type="radio"]');
+                if (radio && radio.checked) {
+                    card.classList.add('border-amber-500', 'bg-amber-50/60', 'ring-2', 'ring-amber-400');
+                    card.classList.remove('border-slate-200', 'bg-white');
+                } else {
+                    card.classList.remove('border-amber-500', 'bg-amber-50/60', 'ring-2', 'ring-amber-400');
+                    card.classList.add('border-slate-200', 'bg-white');
+                }
+            });
+
+            // Populate Sub-Options with strict filtering based on Tingkat
+            selectJabatan.innerHTML = '<option value="" disabled selected>-- Pilih Divisi / Jabatan Spesifik --</option>';
+            
+            const korbidRoles = ['Korbid Kerohanian', 'Korbid Komunitas', 'Korbid Intelektual', 'Korbid Pastoral'];
+            const isKorbidRestricted = (tingkatVal === 'Tingkat 1' || tingkatVal === 'Tingkat 2' || tingkatVal === 'Tingkat 3');
+            const isKuWkuRestricted = (tingkatVal === 'Tingkat 1' || tingkatVal === 'Tingkat 2');
+
+            if (fungsionarisData[bidangName]) {
+                fungsionarisData[bidangName].forEach(item => {
+                    // Restrict "Tingkat 4 (Skripsi)" and "Tingkat 6 (Tesis)" for non-T4/T6
+                    if (bidangName === 'Non-Bidang') {
+                        if (item === 'Tingkat 4 (Skripsi)' && tingkatVal !== 'Tingkat 4') return;
+                        if (item === 'Tingkat 6 (Tesis)' && tingkatVal !== 'Tingkat 6') return;
+                        if (item === 'KU-WKU' && isKuWkuRestricted) return;
+                    }
+
+                    // Restrict Korbid roles for Tingkat 1, 2, and 3
+                    if (korbidRoles.includes(item) && isKorbidRestricted) {
+                        return;
+                    }
+
+                    const opt = document.createElement('option');
+                    opt.value = item;
+                    opt.textContent = item;
+                    selectJabatan.appendChild(opt);
+                });
+            }
+
+            container.classList.remove('hidden');
+        }
+
+        function goToStep(stepNumber) {
+            // Validation before moving to Step 2
+            if (stepNumber === 2 && currentStep === 1) {
+                const bulanInput = document.getElementById('bulanEvaluasi');
+                const tahunInput = document.getElementById('tahunEvaluasi');
+                const namaInput = document.getElementById('namaFrater');
+                const tingkatInput = document.getElementById('tingkatFrater');
+                const jabatanInput = document.getElementById('jabatanFrater');
+
+                const bulan = bulanInput ? bulanInput.value : '';
+                const tahun = tahunInput ? tahunInput.value.trim() : '';
+                const nama = namaInput ? namaInput.value.trim() : '';
+                const tingkat = tingkatInput ? tingkatInput.value : '';
+                const jabatan = jabatanInput ? jabatanInput.value : '';
+
+                if (!bulan) {
+                    showCustomModal("Peringatan", "Mohon pilih Bulan Evaluasi.", "warning");
+                    return;
+                }
+                if (!tahun || tahun.length < 4 || isNaN(tahun)) {
+                    showCustomModal("Peringatan", "Mohon isi Tahun Evaluasi secara valid (4 angka, contoh: 2026).", "warning");
+                    return;
+                }
+                if (!nama) {
+                    showCustomModal("Peringatan", "Mohon isi Nama Lengkap Anda.", "warning");
+                    return;
+                }
+                if (!tingkat) {
+                    showCustomModal("Peringatan", "Mohon pilih Tingkat Anda (1-6).", "warning");
+                    return;
+                }
+                if (!selectedBidang || !jabatan) {
+                    showCustomModal("Peringatan", "Mohon pilih Bidang Fungsionaris & Divisi Spesifik Anda.", "warning");
+                    return;
+                }
+            }
+
+            // Validation before moving to Step 3
+            if (stepNumber === 3 && currentStep === 2) {
+                const tingkatVal = document.getElementById('tingkatFrater').value;
+                const isAcademicGroup = (tingkatVal === 'Tingkat 4' || tingkatVal === 'Tingkat 6');
+
+                if (isAcademicGroup) {
+                    const saranAcad = document.getElementById('evalSaranAcad').value.trim();
+                    const refleksi = document.getElementById('evalRefleksi').value.trim();
+
+                    if (!saranAcad) {
+                        showCustomModal("Peringatan", "Mohon lengkapi kolom Saran dan Masukan.", "warning");
+                        return;
+                    }
+                    if (!refleksi) {
+                        showCustomModal("Peringatan", "Mohon lengkapi kolom Refleksi.", "warning");
+                        return;
+                    }
+                } else {
+                    const kinerja = document.getElementById('evalKinerja').value.trim();
+                    const kendala = document.getElementById('evalKendala').value.trim();
+                    const saran = document.getElementById('evalSaran').value.trim();
+
+                    if (!kinerja || !kendala || !saran) {
+                        showCustomModal("Peringatan", "Mohon lengkapi kolom Evaluasi Kinerja, Kendala & Tantangan, serta Saran dan Masukan.", "warning");
+                        return;
+                    }
+                }
+
+                // Populate Summary Preview
+                document.getElementById('prevPeriode').textContent = `${document.getElementById('bulanEvaluasi').value} ${document.getElementById('tahunEvaluasi').value}`;
+                document.getElementById('prevNama').textContent = document.getElementById('namaFrater').value;
+                document.getElementById('prevTingkat').textContent = tingkatVal;
+                document.getElementById('prevJabatan').textContent = `${selectedBidang} - ${document.getElementById('jabatanFrater').value}`;
+
+                const prevContainer = document.getElementById('prevFieldsContainer');
+                if (isAcademicGroup) {
+                    const saran = document.getElementById('evalSaranAcad').value.trim();
+                    const umum = document.getElementById('evalUmumAcad').value.trim();
+                    const refleksi = document.getElementById('evalRefleksi').value.trim();
+
+                    prevContainer.innerHTML = `
+                        <div>
+                            <span class="text-xs font-semibold text-amber-700 uppercase tracking-wider block">1. Saran & Masukan</span>
+                            <p class="text-sm text-slate-700 bg-white p-3 rounded-lg border border-slate-200 mt-1 italic whitespace-pre-line">${escapeHTML(saran)}</p>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-amber-700 uppercase tracking-wider block">2. Evaluasi Umum</span>
+                            <p class="text-sm text-slate-700 bg-white p-3 rounded-lg border border-slate-200 mt-1 italic whitespace-pre-line">${escapeHTML(umum || '-')}</p>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-amber-700 uppercase tracking-wider block">3. Refleksi</span>
+                            <p class="text-sm text-slate-700 bg-white p-3 rounded-lg border border-slate-200 mt-1 italic whitespace-pre-line">${escapeHTML(refleksi)}</p>
+                        </div>
+                    `;
+                } else {
+                    const saran = document.getElementById('evalSaran').value.trim();
+                    const umum = document.getElementById('evalUmum').value.trim();
+
+                    prevContainer.innerHTML = `
+                        <div>
+                            <span class="text-xs font-semibold text-amber-700 uppercase tracking-wider block">1. Evaluasi Kinerja</span>
+                            <p class="text-sm text-slate-700 bg-white p-3 rounded-lg border border-slate-200 mt-1 italic whitespace-pre-line">${escapeHTML(document.getElementById('evalKinerja').value.trim())}</p>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-amber-700 uppercase tracking-wider block">2. Kendala & Tantangan</span>
+                            <p class="text-sm text-slate-700 bg-white p-3 rounded-lg border border-slate-200 mt-1 italic whitespace-pre-line">${escapeHTML(document.getElementById('evalKendala').value.trim())}</p>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-amber-700 uppercase tracking-wider block">3. Saran & Masukan</span>
+                            <p class="text-sm text-slate-700 bg-white p-3 rounded-lg border border-slate-200 mt-1 italic whitespace-pre-line">${escapeHTML(saran)}</p>
+                        </div>
+                        <div>
+                            <span class="text-xs font-semibold text-amber-700 uppercase tracking-wider block">4. Evaluasi Umum</span>
+                            <p class="text-sm text-slate-700 bg-white p-3 rounded-lg border border-slate-200 mt-1 italic whitespace-pre-line">${escapeHTML(umum || '-')}</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // Update Steps DOM visibility
+            document.getElementById('step1Content').classList.add('hidden');
+            document.getElementById('step2Content').classList.add('hidden');
+            document.getElementById('step3Content').classList.add('hidden');
+
+            document.getElementById(`step${stepNumber}Content`).classList.remove('hidden');
+
+            updateStepIndicators(stepNumber);
+            currentStep = stepNumber;
+        }
+
+        function updateStepIndicators(step) {
+            const pLine = document.getElementById('progressLine');
+            if (step === 1) pLine.style.width = '0%';
+            if (step === 2) pLine.style.width = '50%';
+            if (step === 3) pLine.style.width = '100%';
+
+            for (let i = 1; i <= 3; i++) {
+                const badge = document.getElementById(`step${i}Badge`).querySelector('div');
+                if (i <= step) {
+                    badge.className = "w-10 h-10 rounded-full bg-amber-500 text-slate-900 font-bold flex items-center justify-center shadow-md transition-all duration-200 ring-4 ring-white";
+                } else {
+                    badge.className = "w-10 h-10 rounded-full bg-slate-200 text-slate-600 font-bold flex items-center justify-center shadow transition-all duration-200 ring-4 ring-white";
+                }
+            }
+        }
+
+        function updateCharCount(fieldId, counterId) {
+            const text = document.getElementById(fieldId).value;
+            const counter = document.getElementById(counterId);
+            const count = text.length;
+            counter.textContent = `${count} / 1000`;
+
+            if (count >= 960) {
+                counter.className = "text-xs font-mono font-bold text-red-500";
+            } else if (count >= 800) {
+                counter.className = "text-xs font-mono font-bold text-amber-500";
+            } else {
+                counter.className = "text-xs font-mono text-slate-500";
+            }
+        }
+
+        function openSubmitConfirmModal() {
+            const overlay = document.getElementById('submitConfirmModalOverlay');
+            const box = document.getElementById('submitConfirmModalBox');
+
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                box.classList.remove('scale-95', 'opacity-0');
+                box.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeSubmitConfirmModal() {
+            const overlay = document.getElementById('submitConfirmModalOverlay');
+            const box = document.getElementById('submitConfirmModalBox');
+
+            box.classList.remove('scale-100', 'opacity-100');
+            box.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 150);
+        }
+
+        function executeFormSubmit() {
+            closeSubmitConfirmModal();
+
+            const bulanVal = document.getElementById('bulanEvaluasi').value;
+            const tahunVal = document.getElementById('tahunEvaluasi').value.trim();
+            const tingkatVal = document.getElementById('tingkatFrater').value;
+            const isAcademicGroup = (tingkatVal === 'Tingkat 4' || tingkatVal === 'Tingkat 6');
+
+            const newRecord = {
+                id: 'STPD-' + Date.now().toString().slice(-4),
+                bulan: bulanVal,
+                tahun: tahunVal,
+                nama: document.getElementById('namaFrater').value.trim(),
+                tingkat: tingkatVal,
+                bidang: selectedBidang,
+                jabatan: document.getElementById('jabatanFrater').value,
+                isAcademic: isAcademicGroup,
+                timestamp: new Date().toLocaleString('id-ID', { dateStyle: 'short', timeStyle: 'short' })
+            };
+
+            if (isAcademicGroup) {
+                newRecord.saran = document.getElementById('evalSaranAcad').value.trim();
+                newRecord.umum = document.getElementById('evalUmumAcad').value.trim();
+                newRecord.refleksi = document.getElementById('evalRefleksi').value.trim();
+            } else {
+                newRecord.kinerja = document.getElementById('evalKinerja').value.trim();
+                newRecord.kendala = document.getElementById('evalKendala').value.trim();
+                newRecord.saran = document.getElementById('evalSaran').value.trim();
+                newRecord.umum = document.getElementById('evalUmum').value.trim();
+            }
+
+            evalRecords.unshift(newRecord);
+            localStorage.setItem('stpd_evaluations', JSON.stringify(evalRecords));
+
+            document.getElementById('evaluationForm').reset();
+            onTingkatChange('');
+            document.getElementById('tahunEvaluasi').value = new Date().getFullYear().toString();
+            const bulanNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            document.getElementById('bulanEvaluasi').value = bulanNames[new Date().getMonth()];
+
+            document.getElementById('subJabatanContainer').classList.add('hidden');
+            document.querySelectorAll('.bidang-card').forEach(c => {
+                c.classList.remove('border-amber-500', 'bg-amber-50/60', 'ring-2', 'ring-amber-400');
+                c.classList.add('border-slate-200', 'bg-white');
+            });
+
+            updateCharCount('evalSaran', 'counterSaran');
+            updateCharCount('evalUmum', 'counterUmum');
+            updateCharCount('evalSaranAcad', 'counterSaranAcad');
+            updateCharCount('evalUmumAcad', 'counterUmumAcad');
+            updateCharCount('evalRefleksi', 'counterRefleksi');
+
+            goToStep(1);
+
+            showCustomModal("Evaluasi Terkirim!", "Terima kasih atas partisipasi dan masukan Frater bagi kehidupan bersama STPD.", "success");
+        }
+
+        function renderDashboard() {
+            const listContainer = document.getElementById('evaluationList');
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const filterBu = document.getElementById('filterBulan').value;
+            const filterB = document.getElementById('filterBidang').value;
+            const filterT = document.getElementById('filterTingkat').value;
+
+            document.getElementById('statTotal').textContent = evalRecords.length;
+            
+            if (evalRecords.length > 0) {
+                document.getElementById('statLastUpdate').textContent = evalRecords[0].timestamp;
+                
+                const bidangCount = {};
+                const tingkatCount = {};
+                evalRecords.forEach(r => {
+                    bidangCount[r.bidang] = (bidangCount[r.bidang] || 0) + 1;
+                    tingkatCount[r.tingkat] = (tingkatCount[r.tingkat] || 0) + 1;
+                });
+                
+                const topB = Object.keys(bidangCount).reduce((a, b) => bidangCount[a] > bidangCount[b] ? a : b, '-');
+                const topT = Object.keys(tingkatCount).reduce((a, b) => tingkatCount[a] > tingkatCount[b] ? a : b, '-');
+
+                document.getElementById('statTopBidang').textContent = topB;
+                document.getElementById('statTopTingkat').textContent = topT;
+            } else {
+                document.getElementById('statLastUpdate').textContent = '-';
+                document.getElementById('statTopBidang').textContent = '-';
+                document.getElementById('statTopTingkat').textContent = '-';
+            }
+
+            const filtered = evalRecords.filter(item => {
+                const matchSearch = item.nama.toLowerCase().includes(searchQuery) ||
+                                    item.jabatan.toLowerCase().includes(searchQuery) ||
+                                    item.saran.toLowerCase().includes(searchQuery) ||
+                                    (item.kinerja && item.kinerja.toLowerCase().includes(searchQuery)) ||
+                                    (item.refleksi && item.refleksi.toLowerCase().includes(searchQuery)) ||
+                                    (item.umum && item.umum.toLowerCase().includes(searchQuery)) ||
+                                    (item.tahun && item.tahun.includes(searchQuery));
+                const matchBulan = filterBu === 'ALL' || item.bulan === filterBu;
+                const matchBidang = filterB === 'ALL' || item.bidang === filterB;
+                const matchTingkat = filterT === 'ALL' || item.tingkat === filterT;
+
+                return matchSearch && matchBulan && matchBidang && matchTingkat;
+            });
+
+            if (filtered.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="bg-white rounded-2xl p-8 text-center border border-slate-200 text-slate-500">
+                        <i class="fa-solid fa-inbox text-4xl mb-3 text-slate-300"></i>
+                        <p class="font-medium text-slate-700">Tidak ada data evaluasi yang cocok.</p>
+                        <p class="text-xs text-slate-400 mt-1">Coba sesuaikan kata kunci atau filter yang Anda gunakan.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            listContainer.innerHTML = filtered.map(item => {
+                let innerFieldsHTML = '';
+                if (item.isAcademic) {
+                    innerFieldsHTML = `
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                <span class="font-bold text-slate-700 block mb-1 text-xs">1. SARAN & MASUKAN</span>
+                                <p class="text-slate-600 leading-relaxed">${escapeHTML(item.saran)}</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                <span class="font-bold text-amber-700 block mb-1 text-xs">2. EVALUASI UMUM</span>
+                                <p class="text-slate-600 leading-relaxed">${escapeHTML(item.umum || '-')}</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                <span class="font-bold text-amber-700 block mb-1 text-xs">3. REFLEKSI</span>
+                                <p class="text-slate-600 leading-relaxed">${escapeHTML(item.refleksi || '-')}</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    innerFieldsHTML = `
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                <span class="font-bold text-slate-700 block mb-1 text-xs">1. EVALUASI KINERJA</span>
+                                <p class="text-slate-600 leading-relaxed">${escapeHTML(item.kinerja)}</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                <span class="font-bold text-slate-700 block mb-1 text-xs">2. KENDALA & TANTANGAN</span>
+                                <p class="text-slate-600 leading-relaxed">${escapeHTML(item.kendala)}</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                <span class="font-bold text-slate-700 block mb-1 text-xs">3. SARAN & MASUKAN</span>
+                                <p class="text-slate-600 leading-relaxed">${escapeHTML(item.saran)}</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+                                <span class="font-bold text-slate-700 block mb-1 text-xs text-amber-700">4. EVALUASI UMUM</span>
+                                <p class="text-slate-600 leading-relaxed">${escapeHTML(item.umum || '-')}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                return `
+                    <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 text-seminary-700 font-bold flex items-center justify-center text-sm shrink-0">
+                                    ${escapeHTML(item.nama.charAt(0))}
+                                </div>
+                                <div>
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <h4 class="font-bold text-slate-800 text-sm leading-tight">${escapeHTML(item.nama)}</h4>
+                                        <span class="px-2 py-0.5 text-[10px] font-bold bg-amber-100 text-amber-800 rounded-full border border-amber-200">
+                                            ${escapeHTML(item.bulan || 'Agustus')} ${escapeHTML(item.tahun || '2026')}
+                                        </span>
+                                    </div>
+                                    <span class="text-xs text-slate-500 font-medium">${escapeHTML(item.tingkat)} • <span class="text-amber-700 font-semibold">${escapeHTML(item.bidang)}</span> (${escapeHTML(item.jabatan)})</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-xs text-slate-400 font-mono">${escapeHTML(item.timestamp)}</span>
+                                <button onclick="confirmDeleteRecord('${item.id}', '${escapeHTML(item.nama)}')" 
+                                    class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 hover:bg-rose-600 hover:text-white transition flex items-center justify-center text-xs" 
+                                    title="Hapus evaluasi ini">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                        ${innerFieldsHTML}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function confirmDeleteRecord(id, name) {
+            recordToDeleteId = id;
+            document.getElementById('deleteTargetName').textContent = name;
+
+            const overlay = document.getElementById('deleteModalOverlay');
+            const box = document.getElementById('deleteModalBox');
+
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                box.classList.remove('scale-95', 'opacity-0');
+                box.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeDeleteModal() {
+            const overlay = document.getElementById('deleteModalOverlay');
+            const box = document.getElementById('deleteModalBox');
+
+            box.classList.remove('scale-100', 'opacity-100');
+            box.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                recordToDeleteId = null;
+            }, 150);
+        }
+
+        function executeDeleteRecord() {
+            if (!recordToDeleteId) return;
+
+            evalRecords = evalRecords.filter(r => r.id !== recordToDeleteId);
+            localStorage.setItem('stpd_evaluations', JSON.stringify(evalRecords));
+
+            closeDeleteModal();
+            renderDashboard();
+            showCustomModal("Terhapus", "Data rekapitulasi evaluasi telah berhasil dihapus.", "warning");
+        }
+
+        function confirmDeleteAllRecords() {
+            if (evalRecords.length === 0) {
+                showCustomModal("Informasi", "Tidak ada data evaluasi yang tersimpan untuk dihapus.", "warning");
+                return;
+            }
+
+            const overlay = document.getElementById('deleteAllModalOverlay');
+            const box = document.getElementById('deleteAllModalBox');
+
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                box.classList.remove('scale-95', 'opacity-0');
+                box.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeDeleteAllModal() {
+            const overlay = document.getElementById('deleteAllModalOverlay');
+            const box = document.getElementById('deleteAllModalBox');
+
+            box.classList.remove('scale-100', 'opacity-100');
+            box.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 150);
+        }
+
+        function executeDeleteAllRecords() {
+            evalRecords = [];
+            localStorage.setItem('stpd_evaluations', JSON.stringify(evalRecords));
+
+            closeDeleteAllModal();
+            renderDashboard();
+            showCustomModal("Semua Data Terhapus", "Seluruh data rekapitulasi evaluasi telah berhasil dibersihkan.", "warning");
+        }
+
+        function exportToCSV() {
+            if (evalRecords.length === 0) {
+                showCustomModal("Peringatan", "Belum ada data evaluasi untuk diekspor.", "warning");
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "ID,Bulan,Tahun,Nama,Tingkat,Bidang,Jabatan,Tipe,Refleksi/Kinerja,Kendala,Saran,Umum,Tanggal\n";
+
+            evalRecords.forEach(r => {
+                const row = [
+                    `"${r.id}"`,
+                    `"${r.bulan || 'Agustus'}"`,
+                    `"${r.tahun || '2026'}"`,
+                    `"${r.nama.replace(/"/g, '""')}"`,
+                    `"${r.tingkat}"`,
+                    `"${r.bidang}"`,
+                    `"${r.jabatan.replace(/"/g, '""')}"`,
+                    `"${r.isAcademic ? 'Tingkat Akhir' : 'Fungsionaris'}"`,
+                    `"${(r.isAcademic ? r.refleksi : r.kinerja || '').replace(/"/g, '""')}"`,
+                    `"${(r.isAcademic ? '-' : r.kendala || '').replace(/"/g, '""')}"`,
+                    `"${r.saran.replace(/"/g, '""')}"`,
+                    `"${(r.umum || '').replace(/"/g, '""')}"`,
+                    `"${r.timestamp}"`
+                ].join(",");
+                csvContent += row + "\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `Rekap_Evaluasi_STPD_${new Date().toISOString().slice(0,10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function showCustomModal(title, message, type = "success") {
+            const overlay = document.getElementById('modalOverlay');
+            const box = document.getElementById('modalBox');
+            const icon = document.getElementById('modalIcon');
+            const titleEl = document.getElementById('modalTitle');
+            const msgEl = document.getElementById('modalMessage');
+
+            titleEl.textContent = title;
+            msgEl.textContent = message;
+
+            if (type === "success") {
+                icon.className = "w-16 h-16 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-2xl mx-auto border border-green-200";
+                icon.innerHTML = '<i class="fa-solid fa-check"></i>';
+            } else {
+                icon.className = "w-16 h-16 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mx-auto border border-amber-200";
+                icon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+            }
+
+            overlay.classList.remove('hidden');
+            setTimeout(() => {
+                box.classList.remove('scale-95', 'opacity-0');
+                box.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const overlay = document.getElementById('modalOverlay');
+            const box = document.getElementById('modalBox');
+
+            box.classList.remove('scale-100', 'opacity-100');
+            box.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+            }, 150);
+        }
+
+        function escapeHTML(str) {
+            if (!str) return '';
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>
