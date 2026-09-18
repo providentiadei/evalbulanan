@@ -1704,7 +1704,53 @@
             return str.replace(/[&<>'"]/g, 
                 tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
             );
-        }
+        } 
+
+// 1. Deklarasi URL Apps Script milikmu
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzRnlVCsUh59SY311vifnhbBLCG81fvJsszj4Mc-U9__UEkTeKUsKXrH2jPX3cyLeh3yg/exec";
+
+// 2. Fungsi Kirim Data ke Google Sheets
+function executeFormSubmit() {
+    closeSubmitConfirmModal();
+
+    const tingkatVal = document.getElementById('tingkatFrater').value;
+    const isAcademic = (tingkatVal === 'Tingkat 4' || tingkatVal === 'Tingkat 6');
+
+    const payload = {
+        bulan: document.getElementById('bulanEvaluasi').value,
+        tahun: document.getElementById('tahunEvaluasi').value.trim(),
+        nama: document.getElementById('namaFrater').value.trim(),
+        tingkat: tingkatVal,
+        bidang: selectedBidang,
+        jabatan: document.getElementById('jabatanFrater').value,
+        kinerja: !isAcademic && document.getElementById('evalKinerja') ? document.getElementById('evalKinerja').value.trim() : '',
+        kendala: !isAcademic && document.getElementById('evalKendala') ? document.getElementById('evalKendala').value.trim() : '',
+        saran: isAcademic 
+                ? document.getElementById('evalSaranAcad').value.trim() 
+                : document.getElementById('evalSaran').value.trim(),
+        umum: isAcademic 
+                ? document.getElementById('evalUmumAcad').value.trim() 
+                : document.getElementById('evalUmum').value.trim(),
+        refleksi: isAcademic && document.getElementById('evalRefleksi') ? document.getElementById('evalRefleksi').value.trim() : ''
+    };
+
+    // Kirim data ke Google Sheets
+    fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+    .then(() => {
+        showCustomModal("Berhasil!", "Evaluasi Anda telah berhasil terkirim ke sistem rekapitulasi.", "success");
+        document.getElementById('evaluationForm').reset();
+        goToStep(1);
+    })
+    .catch(err => {
+        console.error("Error:", err);
+        showCustomModal("Gagal", "Terjadi kesalahan saat mengunggah data.", "warning");
+    });
+}
     </script>
 </body>
 </html>
